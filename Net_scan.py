@@ -41,15 +41,16 @@ def ports_detection(name_domain):
 
 def helpp(name):
     print 'Bienvenido a net Scan:'
+    print '[argumento] [nombre dominio, IP]'
     print '-w para realizar un whois'
     print '-p para realizar un ping'
     print '-sx para clasificar sistemas NS y MX'
     print '-n para analizar los 100 puertos mas utilizados'
     print '-h para obtener informacion'
+    print 'Ejemplo: -p google.com'
 
 def main():
-    argument = sys.argv[1]
-    name = sys.argv[2]
+
     options = {
         '-w' : who_is,
         '-p' : ping,
@@ -57,10 +58,14 @@ def main():
         '-n' : ports_detection,
         '-h' : helpp,
     }
+    # Comprobamos que el numero de argumentos pasados por la linea de comandos
+    # son los necesarios y que ademas son validos
     try:
+        argument = sys.argv[1]
+        name = sys.argv[2]
         options[argument](name)
     except:
-        helpp(name)
+        helpp(-1)
 
 
 if __name__ == "__main__":
